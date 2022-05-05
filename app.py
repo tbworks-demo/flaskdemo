@@ -14,7 +14,7 @@ from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine, or_ , and_
-from str_forms import Login, Str_case_approval, Str_conversations, Str_case_update, Str_import_entry, Str_export_entry, Str_case_update_export, Str_case_update_mentor_hawb, Str_s4s_entry, Str_s4s_conversations, Str_s4s_update
+from forms import Login, Str_case_approval, Str_conversations, Str_case_update, Str_import_entry, Str_export_entry, Str_case_update_export, Str_case_update_mentor_hawb, Str_s4s_entry, Str_s4s_conversations, Str_s4s_update
 
 import pandas
 import numpy
