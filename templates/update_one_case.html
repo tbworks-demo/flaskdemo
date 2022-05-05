@@ -1,0 +1,126 @@
+<head>
+    <style>
+    
+    #myform {
+        width: 80%;
+    }
+    #mytable {
+        border-spacing: 0px;
+    }
+    </style>
+</head>
+{% extends "base.html"%}
+
+
+{%block content%}
+
+<br/><br/><br/>
+<p><h5> Company Approval Process / Tests -1 </h5></p>
+<p><h4> New Case Entry Screen </h4></p>
+
+
+{% for message in get_flashed_messages() %}
+<div class="alert alert-success" role="alert">{{message}}</div>
+{% endfor %}
+
+
+{% if case_to_update.operation_type_db=="Import to Turkey" %}
+
+<div class="shadow p-3 mb-5 bg-body rounded">
+    <form action="/update_one_case/{{ case_to_update.id }}"  method="POST" enctype="multipart/form-data">
+        {{form.hidden_tag()}}
+                
+    <table>
+        <tr><td style="width:20%">{{form.str_ref.label(class="form-label")}}</td></tr>
+        <tr><td>{{form.str_ref(class="form-control", value=case_to_update.str_ref_db)}}</td></tr>
+        <tr><td>{{form.tur_ref.label(class="form-label")}}</td></tr>
+        <tr><td>{{form.tur_ref(class="form-control", value=case_to_update.tur_ref_db)}} </td></tr>
+        <tr><td>{{form.note.label(class="form-label")}} </td></tr>
+        <tr><td>{{form.note(class="form-control", value=case_to_update.notes_db)}} </td></tr>
+        <tr><td>{{form.enduser_name.label(class="form-label")}}</td></tr>
+        <tr><td>{{form.enduser_name(class="form-control", value=case_to_update.enduser_name_surname_db)}} </td>
+        <tr><td>{{form.enduser_company.label(class="form-label")}}</td></tr>
+        <tr><td>{{form.enduser_company(class="form-control", value=case_to_update.enduser_company_name_db)}} </td>
+        <tr><td>{{form.enduser_address.label(class="form-label")}}</td></tr>
+        <tr><td>{{form.enduser_address(class="form-control", value=case_to_update.enduser_address_db)}} </td>
+        <tr><td>{{form.enduser_telephone.label(class="form-label")}}</td></tr>
+        <tr><td>{{form.enduser_telephone(class="form-control", value=case_to_update.enduser_tel_db)}} </td>
+        <tr><td>{{form.enduser_email.label(class="form-label")}}</td></tr>
+        <tr><td>{{form.enduser_email(class="form-control", value=case_to_update.enduser_email_db)}} </td>
+        <tr><td>{{form.cancellation_status.label(class="form-label")}}</td></tr>
+        <tr><td>{{form.cancellation_status(class="form-control", value=case_to_update.cancellation_status_db)}} </td>
+        <tr>
+        <td>
+        <label for="inputFile">New File input - 1</label></br>
+        <input class="form-control-file" type="file" name="inputFile1" enctype="multipart/form-data"></br>
+        <label for="inputFile">New File input - 2</label></br>
+        <input class="form-control-file" type="file" name="inputFile2" enctype="multipart/form-data"></br>
+        <label for="inputFile">New File input - 3</label></br>
+        <input class="form-control-file" type="file" name="inputFile3" enctype="multipart/form-data"></br>
+        <label for="inputFile">New File input - 4</label></br>
+        <input class="form-control-file" type="file" name="inputFile4" enctype="multipart/form-data"></br>
+        </td>        
+        </tr>
+        
+        <tr><td></td></tr>
+        
+        <tr><td>{{form.submit(class="btn btn-outline-primary")}}</td></tr>
+    
+    </table>
+    
+    </form>
+    </div>
+
+{% endif %}
+
+
+
+{% if case_to_update.operation_type_db=="Export from Turkey" %}
+
+    <div class="shadow p-3 mb-5 bg-body rounded">
+        <form action="/update_one_case/{{ case_to_update.id }}"  method="POST" enctype="multipart/form-data">
+            {{form.hidden_tag()}}
+                    
+        <table>
+            <tr><td style="width:20%">{{form.str_ref.label(class="form-label")}}</td></tr>
+            <tr><td>{{form.str_ref(class="form-control", value=case_to_update.str_ref_db)}}</td></tr>
+            <tr><td>{{form.tur_ref.label(class="form-label")}}</td></tr>
+            <tr><td>{{form.tur_ref(class="form-control", value=case_to_update.tur_ref_db)}} </td></tr>
+            <tr><td>{{form.note.label(class="form-label")}} </td></tr>
+            <tr><td>{{form.note(class="form-control", value=case_to_update.notes_db)}} </td></tr>
+            
+            <tr><td>{{form.export_pickup_ups_or_enduser.label(class="form-label")}}</td></tr>
+            <tr><td>{{form.export_pickup_ups_or_enduser(class="form-control", value=case_to_update.export_pickup_ups_or_enduser_db)}} </td>
+            
+            
+            <tr><td>{{form.enduser_name.label(class="form-label")}}</td></tr>
+            <tr><td>{{form.enduser_name(class="form-control", value=case_to_update.export_pickup_username_db)}} </td>
+            
+            <tr><td>{{form.enduser_company.label(class="form-label")}}</td></tr>
+            <tr><td>{{form.enduser_company(class="form-control", value=case_to_update.export_pickup_company_db)}} </td>
+            
+            <tr><td>{{form.enduser_address.label(class="form-label")}}</td></tr>
+            <tr><td>{{form.enduser_address(class="form-control", value=case_to_update.export_pickup_address_db)}} </td>
+            
+                <tr><td>{{form.enduser_telephone.label(class="form-label")}}</td></tr>
+            <tr><td>{{form.enduser_telephone(class="form-control", value=case_to_update.export_pickup_telephone_db)}} </td>
+            
+                <tr><td>{{form.enduser_email.label(class="form-label")}}</td></tr>
+            <tr><td>{{form.enduser_email(class="form-control", value=case_to_update.export_pickup_email_db)}} </td>
+            
+                <tr><td>{{form.cancellation_status.label(class="form-label")}}</td></tr>
+            <tr><td>{{form.cancellation_status(class="form-control", value=case_to_update.cancellation_status_db)}} </td>
+            
+            
+            <tr><td></td></tr>
+            
+            <tr><td>{{form.submit(class="btn btn-outline-primary")}}</td></tr>
+        
+        </table>
+        
+        </form>
+        </div>
+
+{% endif %}
+
+{%endblock%}

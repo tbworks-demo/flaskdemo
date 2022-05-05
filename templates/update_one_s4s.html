@@ -1,0 +1,275 @@
+<head>
+    <style>
+        #myform {
+            width: 80%;
+        }
+
+        #mytable {
+            border-spacing: 0px;
+        }
+    </style>
+</head>
+{% extends "base.html"%}
+
+
+{%block content%}
+
+<br><br><br>
+<p>
+<h5> Company Approval Process / Tests -1 </h5>
+</p>
+<p>
+<h4> S4S Update Screen </h4>
+</p>
+
+
+{% for message in get_flashed_messages() %}
+<div class="alert alert-success" role="alert">{{message}}</div>
+{% endfor %}
+
+
+
+
+<div class="shadow p-3 mb-5 bg-body rounded">
+    <form action="/update_one_s4s/{{ s4s_to_update.id }}" method="POST" enctype="multipart/form-data">
+        {{form.hidden_tag()}}
+
+        <table style="width:100%;">
+            <tr>
+                <td style="width: 50%;">{{form.cm_rma_number.label(class="form-label")}} </td>
+                <td style="width: 50%;"> {{form.juniper_part_number.label(class="form-label")}} </td>
+            </tr>
+            <tr>
+                <td style="width: 50%;"> {{form.cm_rma_number(class="form-control", value=s4s_to_update.cm_rma_db)}}
+                </td>
+                <td style="width: 50%;">{{form.juniper_part_number(class="form-control",
+                    value=s4s_to_update.juniper_part_no_db)}} </td>
+            </tr>
+
+
+
+            <tr>
+                <td>{{form.part_serial_number.label(class="form-label")}} </td>
+                <td>{{form.quantity.label(class="form-label")}} </td>
+            </tr>
+            <tr>
+                <td>{{form.part_serial_number(class="form-control", value=s4s_to_update.serial_no_db)}} </td>
+                <td>{{form.quantity(class="form-control", value=s4s_to_update.quantity_db)}} </td>
+            </tr>
+
+
+
+            <tr>
+                <td>{{form.country_of_origin.label(class="form-label")}} </td>
+                <td>{{form.rma_number.label(class="form-label")}} </td>
+            </tr>
+            <tr>
+                <td>{{form.country_of_origin(class="form-control", value=s4s_to_update.country_of_origin_db)}} </td>
+                <td>{{form.rma_number(class="form-control", value=s4s_to_update.rma_no)}} </td>
+            </tr>
+
+
+
+            <tr>
+                <td>{{form.sto_number.label(class="form-label")}} </td>
+                <td>{{form.ups_so_number.label(class="form-label")}} </td>
+            </tr>
+            <tr>
+                <td>{{form.sto_number(class="form-control", value=s4s_to_update.sto_no_db)}} </td>
+                <td>{{form.ups_so_number(class="form-control", value=s4s_to_update.ups_so_db)}} </td>
+            </tr>
+
+
+
+            <tr>
+                <td>{{form.export_invoice_number.label(class="form-label")}} </td>
+                <td>{{form.export_price.label(class="form-label")}} </td>
+            </tr>
+            <tr>
+                <td>{{form.export_invoice_number(class="form-control", value=s4s_to_update.export_invoice_no_db)}} </td>
+                <td>{{form.export_price(class="form-control", value=s4s_to_update.export_price_db)}} </td>
+            </tr>
+
+
+
+            <tr>
+                <td>{{form.export_hawb_number.label(class="form-label")}} </td>
+                <td>{{form.export_date.label(class="form-label")}} </td>
+            </tr>
+            <tr>
+                <td>{{form.export_hawb_number(class="form-control", value=s4s_to_update.export_hawb_no_db)}} </td>
+                <td>{{form.export_date(class="form-control", type="date")}}
+                </td>
+            </tr>
+
+
+
+            <tr>
+                <td>{{form.repair_cm_consignee.label(class="form-label")}} </td>
+                <td>{{form.country_of_export.label(class="form-label")}} </td>
+            </tr>
+            <tr>
+                <td>{{form.repair_cm_consignee(class="form-control", value=s4s_to_update.repair_cm_consignee_db)}} </td>
+                <td>{{form.country_of_export(class="form-control", value=s4s_to_update.export_country_db)}} </td>
+            </tr>
+
+
+
+            <tr>
+                <td>{{form.export_remarks.label(class="form-label")}} </td>
+                <td>{{form.cm_reference_number.label(class="form-label")}} </td>
+            </tr>
+            <tr>
+                <td>{{form.export_remarks(class="form-control", value=s4s_to_update.export_remarks_db)}} </td>
+                <td>{{form.cm_reference_number(class="form-control", value=s4s_to_update.cm_reference_db)}} </td>
+            </tr>
+
+
+
+            <tr>
+                <td>{{form.reimport_invoice_number.label(class="form-label")}} </td>
+                <td>{{form.reimport_repair_price.label(class="form-label")}} </td>
+            </tr>
+            <tr>
+                <td>{{form.reimport_invoice_number(class="form-control", value=s4s_to_update.reimport_invoice_no_db)}}
+                </td>
+                <td>{{form.reimport_repair_price(class="form-control", value=s4s_to_update.reimport_repair_price_db)}}
+                </td>
+            </tr>
+
+
+
+            <tr>
+                <td>{{form.total_shipment_value.label(class="form-label")}} </td>
+                <td>{{form.total_customs_cif_value_usd.label(class="form-label")}} </td>
+            </tr>
+            <tr>
+                <td>{{form.total_shipment_value(class="form-control", value=s4s_to_update.total_shipment_value_db)}}
+                </td>
+                <td>{{form.total_customs_cif_value_usd(class="form-control",
+                    value=s4s_to_update.total_customs_cif_value_usd_db)}} </td>
+            </tr>
+
+
+
+            <tr>
+                <td>{{form.total_customs_cif_value_idr.label(class="form-label")}} </td>
+                <td>{{form.total_shipment_customs_duty_idr.label(class="form-label")}} </td>
+            </tr>
+            <tr>
+                <td>{{form.total_customs_cif_value_idr(class="form-control",
+                    value=s4s_to_update.total_customs_cif_value_idr_db)}} </td>
+                <td>{{form.total_shipment_customs_duty_idr(class="form-control",
+                    value=s4s_to_update.total_shipment_customs_duty_idr_db)}} </td>
+            </tr>
+
+
+
+            <tr>
+                <td>{{form.total_shipment_customs_vat_idr.label(class="form-label")}} </td>
+                <td>{{form.reimport_hawb_number.label(class="form-label")}} </td>
+            </tr>
+            <tr>
+                <td>{{form.total_shipment_customs_vat_idr(class="form-control",
+                    value=s4s_to_update.total_shipment_customs_vat_idr_db)}} </td>
+                <td>{{form.reimport_hawb_number(class="form-control", value=s4s_to_update.import_hawb_no_db)}} </td>
+            </tr>
+
+
+
+            <tr>
+                <td>{{form.reimport_date.label(class="form-label")}} </td>
+                <td>{{form.reimport_consignee.label(class="form-label")}} </td>
+            </tr>
+            <tr>
+                <td>{{form.reimport_date(class="form-control", type="date")}}
+                </td>
+                <td>{{form.reimport_consignee(class="form-control", value=s4s_to_update.reimport_consignee_db)}} </td>
+            </tr>
+
+
+
+            <tr>
+                <td>{{form.country_of_import.label(class="form-label")}} </td>
+                <td>{{form.reimport_remarks.label(class="form-label")}} </td>
+            </tr>
+            <tr>
+                <td>{{form.country_of_import(class="form-control", value=s4s_to_update.import_country_db)}} </td>
+                <td>{{form.reimport_remarks(class="form-control", value=s4s_to_update.import_remarks_db)}} </td>
+            </tr>
+
+
+
+            <tr>
+                <td>{{form.new_buy_price.label(class="form-label")}} </td>
+                <td>{{form.hs_code.label(class="form-label")}} </td>
+            </tr>
+            <tr>
+                <td>{{form.new_buy_price(class="form-control", value=s4s_to_update.new_buy_price_db)}} </td>
+                <td>{{form.hs_code(class="form-control", value=s4s_to_update.hs_code_db)}} </td>
+            </tr>
+
+
+            <tr>
+                <td>{{form.duty_rate_on_new_buy.label(class="form-label")}} </td>
+                <td>{{form.estimated_duty_charge_on_new_buy.label(class="form-label")}} </td>
+            </tr>
+            <tr>
+                <td>{{form.duty_rate_on_new_buy(class="form-control", value=s4s_to_update.duty_rate_on_new_buy_db)}}
+                </td>
+                <td>{{form.estimated_duty_charge_on_new_buy(class="form-control",
+                    value=s4s_to_update.estimated_duty_charge_on_new_buy_db)}} </td>
+            </tr>
+
+
+
+            <tr>
+                <td>{{form.estimated_vat_charge_on_new_buy.label(class="form-label")}} </td>
+            </tr>
+            <tr>
+                <td>{{form.estimated_vat_charge_on_new_buy(class="form-control",
+                    value=s4s_to_update.estimated_vat_charge_on_new_buy_db)}} </td>
+            </tr>
+
+            <tr>
+                <td>{{form.case_status.label(class="form-label")}} </td>>
+                <td>
+                    {{form.cancellation_status.label(class="form-label")}} </td>
+            </tr>
+            <tr>
+                <td>{{form.case_status(class="form-control", value=s4s_to_update.case_status_db)}} </td>
+                <td>{{form.cancellation_status(class="form-control", value=s4s_to_update.cancellation_status_db)}} </td>
+            </tr>
+
+
+
+            <tr>
+                <td>
+                    <label for="inputFile">File input - 1</label></br>
+                    <input class="form-control-file" type="file" name="inputFile1" enctype="multipart/form-data"></br>
+                    <label for="inputFile">File input - 2</label></br>
+                    <input class="form-control-file" type="file" name="inputFile2" enctype="multipart/form-data"></br>
+                    <label for="inputFile">File input - 3</label></br>
+                    <input class="form-control-file" type="file" name="inputFile3" enctype="multipart/form-data"></br>
+                    <label for="inputFile">File input - 4</label></br>
+                    <input class="form-control-file" type="file" name="inputFile4" enctype="multipart/form-data"></br>
+                    <label for="inputFile">File input - 5</label></br>
+                    <input class="form-control-file" type="file" name="inputFile5" enctype="multipart/form-data"></br>
+                    <label for="inputFile">File input - 6</label></br>
+                    <input class="form-control-file" type="file" name="inputFile6" enctype="multipart/form-data"></br>
+                </td>
+            </tr>
+
+
+
+
+
+            <tr>
+                <td>{{form.submit(class="btn btn-outline-primary")}}</td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+
+{%endblock%}

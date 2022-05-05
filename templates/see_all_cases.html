@@ -1,0 +1,152 @@
+<head>
+    <style>
+    
+    #myform {
+        width: 80%;
+    }
+    #mytable {
+        border-spacing: 0px;
+    }
+    </style>
+</head>
+{% extends "base.html"%}
+
+
+{%block content%}
+
+<br/><br/><br/>
+<p><h5> Company Approval Process / Tests -1 </h5></p>
+<p><h4> New Case Entry Screen </h4></p>
+
+
+{% for message in get_flashed_messages() %}
+<div class="alert alert-success" role="alert">{{message}}</div>
+{% endfor %}
+
+</br>
+{% if user_name %}
+  User Name: {{ user_name }} User Role: {{ user_role }}
+{% endif %}
+</br>
+
+
+{% if user_role=="user1" %}
+  Hello user1
+
+
+<div class="shadow p-3 mb-5 mt-1 bg-body rounded">
+       
+    <table class="table table-striped">
+        <th style="width:6%">Company Reference</th>
+        <th style="width:5%">Turkey Reference</th>
+        <th style="width:9%">Date of Request</th>
+        <th style="width:7%">Mentor Reply / Initial Status</th>
+        <th style="width:7%">Import / Export</th>
+        <th style="width:7%">Status</th>
+        <th style="width:5%">Active?</th>
+        <th style="width:5%">Details</th>
+        <th style="width:5%">For Deletion</th>
+        {% for case in all_cases %}     
+    <tr>
+        <td style="width:6%">{{ case.str_ref_db}}</td>
+        <td style="width:6%">{{ case.tur_ref_db}}</td>
+        <td style="width:5%">{{ case.date_added_db}}</td>
+        <td style="width:5%">{{ case.initial_status_db}}</td>
+        <td style="width:5%">{{ case.operation_type_db}}</td>
+        <td style="width:5%">{{ case.status_db}}</td>
+        <td style="width:5%">{{ case.cancellation_status_db}}</td>
+
+        <td style="width:8%"> <a href="{{url_for('see_one_case',id=case.id)}}">See Details</a></td>
+        <td><a href="{{url_for('delete_one_case',id=case.id)}}">Delete Case</a></td>
+    </tr>
+    {% endfor %}
+    </table>
+
+    
+
+</div>    
+{% endif %}
+
+
+
+{% if user_role=="user3" %}
+  Hello user3
+
+
+<div class="shadow p-3 mb-5 mt-1 bg-body rounded">
+       
+    <table class="table table-striped">
+        <th style="width:6%">Company Reference</th>
+        <th style="width:5%">Turkey Reference</th>
+        <th style="width:9%">Date of Request</th>
+        <th style="width:7%">Mentor Reply / Initial Status</th>
+        <th style="width:7%">Status</th>
+        <th style="width:7%">Active?</th>
+        <th style="width:5%">Details</th>
+        
+        {% for case in all_cases %}     
+    <tr>
+        <td style="width:6%">{{ case.str_ref_db}}</td>
+        <td style="width:6%">{{ case.tur_ref_db}}</td>
+        <td style="width:5%">{{ case.date_added_db}}</td>
+        <td style="width:5%">{{ case.initial_status_db}}</td>
+        <td style="width:5%">{{ case.status_db}}</td>
+        <td style="width:5%">{{ case.cancellation_status_db}}</td>
+        <td style="width:8%"> <a href="{{url_for('see_one_case',id=case.id)}}">See Details</a></td>
+        
+    </tr>
+    {% endfor %}
+    </table>
+
+    
+
+</div>    
+{% endif %}
+
+
+{% if user_role=="user4" %}
+  Hello user4
+
+
+<div class="shadow p-3 mb-5 mt-1 bg-body rounded">
+       
+    <table class="table table-striped">
+        <th style="width:6%">Company Reference</th>
+        <th style="width:5%">Turkey Reference</th>
+        <th style="width:9%">Date of Request</th>
+        <th style="width:7%">Mentor Reply / Initial Status</th>
+        <th style="width:7%">Status</th>
+        <th style="width:7%">Active?</th>
+        <th style="width:5%">Details</th>
+        
+        {% for case in all_cases %}     
+    <tr>
+        <td style="width:6%">{{ case.str_ref_db}}</td>
+        <td style="width:6%">{{ case.tur_ref_db}}</td>
+        <td style="width:5%">{{ case.date_added_db}}</td>
+        <td style="width:5%">{{ case.initial_status_db}}</td>
+        <td style="width:5%">{{ case.status_db}}</td>
+        <td style="width:5%">{{ case.cancellation_status_db}}</td>
+        <td style="width:8%"> <a href="{{url_for('see_one_case',id=case.id)}}">See Details</a></td>
+        
+    </tr>
+    {% endfor %}
+    </table>
+
+    
+
+</div>    
+{% endif %}
+
+
+
+
+
+
+
+
+
+<br/><br/>
+<p><b>Company Global</b> / Version - 001 </p>
+
+{%endblock%}

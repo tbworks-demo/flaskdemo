@@ -1,0 +1,99 @@
+<head>
+    <style>
+    
+    #myform {
+        width: 80%;
+    }
+    #mytable {
+        border-spacing: 0px;
+    }
+    </style>
+</head>
+{% extends "base.html"%}
+
+
+{%block content%}
+
+<br/><br/><br/>
+<p><h5> Company Approval Process / Tests -1 </h5></p>
+<p><h4> Case / File Details </h4></p>
+
+
+{% for message in get_flashed_messages() %}
+<div class="alert alert-success" role="alert">{{message}}</div>
+{% endfor %}
+
+</br>
+
+
+<table>
+
+<th style="width:5%">STR REF</th>
+<th style="width:5%">TURKEY REF</th>
+<th style="width:5%">DATE ADDED</th>
+<th style="width:5%">INITIAL STATUS / MENTOR APPROVAL</th>
+<th style="width:5%">STATUS</th>
+<th style="width:5%">TYPE</th>
+
+
+
+<tr>
+    <td>{{ case_to_approve.str_ref_db}}</td>
+    <td>{{ case_to_approve.tur_ref_db}}</td>
+    <td>{{ case_to_approve.date_added_db}}</td>
+    <td>{{ case_to_approve.initial_status_db}}</td>
+    <td>{{ case_to_approve.status_db}}</td>
+    <td>{{ case_to_approve.operation_type_db}}</td>
+</tr>
+
+
+
+</table>
+
+</br></br>
+<table>
+    <th style="width:50%">NOTES</th>
+    <tr><td>{{ case_to_approve.notes_db}}</td></tr>
+    </table>
+</br></br>
+<table>
+
+    <th style="width:5%">ENDUSER COMPANY</th><th style="width:5%">ENDUSER CONTACT NAME</th><th style="width:5%">ENDUSER TELEPHONE</th><th style="width:5%">ENDUSER EMAIL</th><th style="width:5%">ENDUSER ADDRESS</th>
+    
+    <tr><td style="width:5%">{{ case_to_approve.enduser_company_name_db}}</td>
+        <td style="width:6%">{{ case_to_approve.enduser_name_surname_db}}</td>
+        <td style="width:5%">{{ case_to_approve.enduser_tel_db}}</td>
+        <td style="width:5%">{{ case_to_approve.enduser_email_db}}</td> 
+        <td style="width:5%">{{ case_to_approve.enduser_address_db}}</td></tr>
+    
+   
+</table>
+
+
+
+</br></br></br></br>
+
+</br></br>
+<p><b style= "color: orangered;">For Mentor Staff Use:</b></p>
+
+<form method="POST", id="myform">
+    {{form.hidden_tag()}}
+    
+    <table style="width:100%", id="mytable">
+    
+    <tr><td>{{form.reply_result.label(class="form-label")}} </td> </tr>
+    <tr><td>{{form.reply_result(class="form-control")}} </td> </tr>        
+    
+    </table>
+    <br/>
+    {{form.submit(class="btn btn-outline-primary")}}
+</form>
+
+
+
+
+
+<br/><br/></br></br>
+<p><b>Company Global</b> / Version - 001 </p>
+
+{%endblock%}

@@ -1,0 +1,389 @@
+<head>
+    <style>
+    
+    #myform {
+        width: 80%;
+    }
+    #mytable {
+        border-spacing: 0px;
+    }
+    </style>
+</head>
+{% extends "base.html"%}
+
+
+{%block content%}
+
+<br/><br/><br/>
+<p><h5> Company Approval Process / Tests -1 </h5></p>
+<p><h4> Case / File Details </h4></p>
+
+
+</br>
+{% if user_role=="user1" %}
+<a href="{{url_for('update_one_case',id=id)}}" button type="button" class="btn btn-info">Update Case Information</a>
+{% endif %}
+
+
+<! Here user1 see all details below user3 and user4 will see their own separate information ––>
+
+
+{% if (user_role=="user1")  %}
+    {% if (case_to_show.operation_type_db=="Import to Turkey")  %}
+                <table class="table table-striped">
+                <th style="width:5%">STR REF</th>
+                <th style="width:5%">TURKEY REF</th>
+                <th style="width:5%">DATE ADDED</th>
+                <th style="width:5%">INITIAL STATUS / MENTOR APPROVAL</th>
+                <th style="width:5%">STATUS</th>
+                <th style="width:5%">TYPE</th>
+                <tr>
+                    <td>{{ case_to_show.str_ref_db}}</td>
+                    <td>{{ case_to_show.tur_ref_db}}</td>
+                    <td>{{ case_to_show.date_added_db}}</td>
+                    <td>{{ case_to_show.initial_status_db}}</td>
+                    <td>{{ case_to_show.status_db}}</td>
+                    <td>{{ case_to_show.operation_type_db}}</td>
+                </tr>
+                </table>
+
+                </br>
+                <table class="table table-striped">
+                    <th style="width:50%">NOTES</th>
+                    <tr><td>{{ case_to_show.notes_db}}</td></tr>
+                    </table>
+                </br>
+                <table class="table table-striped">
+
+                    <th style="width:5%">ENDUSER COMPANY</th><th style="width:5%">ENDUSER CONTACT NAME</th><th style="width:5%">ENDUSER TELEPHONE</th><th style="width:5%">ENDUSER EMAIL</th><th style="width:5%">ENDUSER ADDRESS</th><th style="width:5%">ACTIVE/CANCELLED</th>
+                    
+                    <tr><td style="width:5%">{{ case_to_show.enduser_company_name_db}}</td>
+                        <td style="width:6%">{{ case_to_show.enduser_name_surname_db}}</td>
+                        <td style="width:5%">{{ case_to_show.enduser_tel_db}}</td>
+                        <td style="width:5%">{{ case_to_show.enduser_email_db}}</td> 
+                        <td style="width:5%">{{ case_to_show.enduser_address_db}}</td>
+                        <td style="width:5%">{{ case_to_show.cancellation_status_db}}</td>
+                    
+                    </tr>    
+                
+                </table>
+                </br>
+                
+    {% endif %}
+
+    {% if (case_to_show.operation_type_db=="Export from Turkey")  %}
+    <table class="table table-striped">
+    <th style="width:5%">STR REF</th>
+    <th style="width:5%">TURKEY REF</th>
+    <th style="width:5%">DATE ADDED</th>
+    <th style="width:5%">INITIAL STATUS / MENTOR APPROVAL</th>
+    <th style="width:5%">STATUS</th>
+    <th style="width:5%">TYPE</th>
+    <tr>
+        <td>{{ case_to_show.str_ref_db}}</td>
+        <td>{{ case_to_show.tur_ref_db}}</td>
+        <td>{{ case_to_show.date_added_db}}</td>
+        <td>{{ case_to_show.initial_status_db}}</td>
+        <td>{{ case_to_show.status_db}}</td>
+        <td>{{ case_to_show.operation_type_db}}</td>
+    </tr>
+    </table>
+
+    <br>
+
+    <table class="table table-striped">
+        <th style="width:50%">NOTES</th>
+        <tr><td>{{ case_to_show.notes_db}}</td></tr>
+        </table>
+    
+    <br>
+
+    <table class="table table-striped">
+
+        <th style="width:5%">ENDUSER PICKUP FROM?</th><th style="width:5%">ENDUSER PICKUP CONTACT NAME</th><th style="width:5%">ENDUSER PICKUP COMPANY NAME</th><th style="width:5%">ENDUSER PICKUP TELEPHONE</th><th style="width:5%">ENDUSER PICKUP EMAIL</th><th style="width:5%">ENDUSER ADDRESS</th>
+        
+        <tr><td style="width:5%">{{ case_to_show.export_pickup_ups_or_enduser_db}}</td>
+            <td style="width:6%">{{ case_to_show.export_pickup_username_db}}</td>
+            <td style="width:6%">{{ case_to_show.export_pickup_company_db}}</td>
+            <td style="width:5%">{{ case_to_show.export_pickup_telephone_db}}</td> 
+            <td style="width:5%">{{ case_to_show.export_pickup_email_db}}</td>
+            <td style="width:5%">{{ case_to_show.export_pickup_address_db}}</td>
+            
+        
+        </tr>
+        
+    
+    </table>
+{% endif %}       
+
+
+
+
+
+
+
+{% endif %}
+
+
+<! Here user1 see all details below user3 and user4 will see their own separate information ––>
+
+
+{% if (user_role=="user3")  %}
+                <table class="table table-striped">
+
+                <th style="width:5%">STR REF</th>
+                <th style="width:5%">TURKEY REF</th>
+                <th style="width:5%">DATE ADDED</th>
+                <th style="width:5%">INITIAL STATUS / MENTOR APPROVAL</th>
+                <th style="width:5%">STATUS</th>
+                <th style="width:5%">TYPE</th>
+                <tr>
+                    <td>{{ case_to_show.str_ref_db}}</td>
+                    <td>{{ case_to_show.tur_ref_db}}</td>
+                    <td>{{ case_to_show.date_added_db}}</td>
+                    <td>{{ case_to_show.initial_status_db}}</td>
+                    <td>{{ case_to_show.status_db}}</td>
+                    <td>{{ case_to_show.operation_type_db}}</td>
+                </tr>
+                </table>
+
+                </br></br>
+                <table class="table table-striped">
+                    <th style="width:50%">NOTES</th>
+                    <tr><td>{{ case_to_show.notes_db}}</td></tr>
+                    </table>
+                </br></br>
+                <table class="table table-striped">
+
+                    <th style="width:5%">ENDUSER COMPANY</th><th style="width:5%">ENDUSER CONTACT NAME</th><th style="width:5%">ENDUSER TELEPHONE</th><th style="width:5%">ENDUSER EMAIL</th><th style="width:5%">ENDUSER ADDRESS</th><th style="width:5%">ACTIVE/CANCELLED</th>
+                    
+                    <tr><td style="width:5%">{{ case_to_show.enduser_company_name_db}}</td>
+                        <td style="width:6%">{{ case_to_show.enduser_name_surname_db}}</td>
+                        <td style="width:5%">{{ case_to_show.enduser_tel_db}}</td>
+                        <td style="width:5%">{{ case_to_show.enduser_email_db}}</td> 
+                        <td style="width:5%">{{ case_to_show.enduser_address_db}}</td>
+                        <td style="width:5%">{{ case_to_show.cancellation_status_db}}</td>
+                    
+                    </tr>    
+                
+                </table>
+                
+
+
+{% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+<! Here user1 see all details below user3 and user4 will see their own separate information ––>
+
+
+{% if (user_role=="user4")  %}
+                <table class="table table-striped">
+
+                <th style="width:5%">STR REF</th>
+                <th style="width:5%">TURKEY REF</th>
+                <th style="width:5%">DATE ADDED</th>
+                <th style="width:5%">INITIAL STATUS / MENTOR APPROVAL</th>
+                <th style="width:5%">STATUS</th>
+                <th style="width:5%">TYPE</th>
+                <tr>
+                    <td>{{ case_to_show.str_ref_db}}</td>
+                    <td>{{ case_to_show.tur_ref_db}}</td>
+                    <td>{{ case_to_show.date_added_db}}</td>
+                    <td>{{ case_to_show.initial_status_db}}</td>
+                    <td>{{ case_to_show.status_db}}</td>
+                    <td>{{ case_to_show.operation_type_db}}</td>
+                </tr>
+                </table>
+
+                </br>
+                <table class="table table-striped">
+                    <th style="width:50%">NOTES</th>
+                    <tr><td>{{ case_to_show.notes_db}}</td></tr>
+                    </table>
+                </br>
+                
+                <table class="table table-striped">
+
+                    <th style="width:5%">ENDUSER PICKUP FROM?</th><th style="width:5%">ENDUSER PICKUP CONTACT NAME</th><th style="width:5%">ENDUSER PICKUP COMPANY NAME</th><th style="width:5%">ENDUSER PICKUP TELEPHONE</th><th style="width:5%">ENDUSER PICKUP EMAIL</th><th style="width:5%">ENDUSER ADDRESS</th><th style="width:5%">ACTIVE/CANCELLED</th><th style="width:5%">MENTOR REFERENCE NUMBER</th><th style="width:5%">HAWB NUMBER</th>
+                    
+                    <tr>
+                        
+                        <td style="width:5%">{{ case_to_show.export_pickup_ups_or_enduser_db}}</td>
+                        <td style="width:6%">{{ case_to_show.export_pickup_username_db}}</td>
+                        <td style="width:6%">{{ case_to_show.export_pickup_company_db}}</td>
+                        <td style="width:5%">{{ case_to_show.export_pickup_telephone_db}}</td> 
+                        <td style="width:5%">{{ case_to_show.export_pickup_email_db}}</td>
+                        <td style="width:5%">{{ case_to_show.export_pickup_address_db}}</td>
+                        <td style="width:5%">{{ case_to_show.cancellation_status_db}}</td>
+                    
+                    </tr>
+                    
+                
+                </table><br>
+                <table class="table table-striped">
+                    <th style="width:5%">MENTOR REFERENCE NUMBER</th>
+                    <th style="width:5%">HAWB NUMBER</th>
+                    <th style="width:5%">EXPORT MENTOR STATUS</th>
+
+                    <tr>
+                        <td style="width:5%">{{ case_to_show.export_mentor_reference_db}}</td>
+                        <td style="width:5%">{{ case_to_show.export_waybill_no_db}}</td>
+                        <td style="width:5%">{{ case_to_show.export_mentor_status_db}}</td>     
+                    </tr>
+                </table>
+
+
+{% endif %}
+
+
+
+
+</br></br></br></br>
+<b>List of attachments:</b></br>
+
+{% for item in list_of_file_names %}
+
+     {{item}} </br>
+
+{% endfor %}
+<br><br>
+
+<b>List of file name numbers:</b></br>
+{% for file_number in list_of_file_name_numbers %}
+    {{file_number}}
+{% endfor %}
+
+
+<br><br>
+{# See main app for explanation#}
+<b>For downloading attachments:</b></br>
+
+
+{% if (len_of_files_list>=11) %}
+<p style="color: orangered;">The download links for this case has been suspended for this case as the number of files uploaded is <b>more than 10</b>. Please inform your IT administrator.<br>(The maximum number of files allowed per case is 10. There have been more than 10 file uploads in this case and you are seeing this message as a protection of system from crashing.)</p>
+
+{% endif %}
+
+
+
+{% if (len_of_files_list<=10) %}
+    {% for value1, value2 in list_of_links|zip(list_of_file_names) %}
+        {{value1}}{{value2}}
+    <a href="{{url_for(value1,id=case_to_show.id)}}" button type="button" class="btn btn-warning">{{value2}}</a>
+
+    {% endfor %}
+{% endif %}
+
+</br></br>
+
+{% for message in get_flashed_messages() %}
+<div class="alert alert-success" role="alert">{{message}}</div>
+{% endfor %}
+
+
+
+</br></br>
+
+<p> Communication about this case: <br><b>Last Message Displayed First </b> </p>
+<div class="shadow p-3 mb-5 mt-1 bg-body rounded">
+       
+    <table class="table table-striped">
+        <th style="width:5%">Message</th><th style="width:4%">Sender</th><th style="width:7%">Date</th>
+        {% for conversation in conversations_to_display %}
+    <tr>
+        <td style="width:30%">{{conversation.text_db}}</td><td style="width:5%">{{conversation.sender_db}}</td><td style="width:10%">{{conversation.date_of_sending_db}}</td>
+
+       
+    </tr>
+    {% endfor %}
+    </table>
+
+    
+
+</div>
+
+<form method="POST", id="myform2">
+    {{form.hidden_tag()}}
+    
+    <table style="width:100%", id="mytable2">
+    
+    <tr><td>{{form.text.label(class="form-label")}} </td> </tr>
+    <tr><td>{{form.text(class="form-control")}} </td> </tr>
+</table>
+<br/>
+{{form.submit(class="btn btn-outline-primary")}}
+</form>
+
+
+
+</br></br></br></br>
+
+{% if (user_role=="user4")  %}
+<b style= "color: orangered;">For Agency Export Staff Use:</b></br>
+
+
+<br>
+<form method="POST", id="myform" enctype="multipart/form-data">
+    {{form2.hidden_tag()}}
+    
+    <table style="width:100%", id="mytable">
+    
+    <tr><td>{{form2.mentor_ref.label(class="form-label")}} </td> </tr>
+    <tr><td>{{form2.mentor_ref(class="form-control")}} </td> </tr>
+    
+    <tr><td>{{form2.hawb_number.label(class="form-label")}} </td> </tr>
+    <tr><td>{{form2.hawb_number(class="form-control")}} </td> </tr>
+    
+    <tr><td>{{form2.export_mentor_status.label(class="form-label")}} </td> </tr>
+    <tr><td>{{form2.export_mentor_status(class="form-control")}} </td> </tr>
+    
+    </table>
+
+    <br>
+    {{form2.submit(class="btn btn-outline-primary")}}
+</form>
+
+
+
+
+
+
+
+{% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+{% if (user_role=="user3")  %}
+<b style= "color: orangered;">For Agency Import Staff Use:</b></br>
+
+Access To Approval Page</br>
+<a href="{{url_for('import_approval_step', id=case_to_show.id)}}" button type="button" class="btn btn-warning">For Approval Screen</a>
+
+{% endif %}
+
+
+
+<br/><br/></br></br>
+<p><b>Company Global</b> / Version - 001 </p>
+
+{%endblock%}

@@ -1,0 +1,213 @@
+<style>
+    .error {
+    color: red;
+    border: 2px solid red;
+}
+    .success {
+    color: limegreen;
+    border: 2px solid limegreen;
+}
+
+</style>
+
+{% extends "base.html"%}
+
+{%block content%}
+
+</br></br></br></br>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% for category, message in messages %}
+    <div class="{{ category }}">{{ message }}</div>
+  {% endfor %}
+{% endwith %}
+</br>
+  {% if user_name %}
+    User Name: {{ user_name }} User Role: {{ user_role }}
+  {% endif %}
+</br>
+
+
+
+<h4>COMPANY Tests - 30 APR 2022</h4>
+
+</br>
+
+
+
+
+{% if current_user.is_authenticated %}
+
+  {% if current_user.role_db=="user1" %}
+<h5 style="color: orangered;">There are <b>{{number_of_pending_records}}</b> pending files/cases waiting for approval.(IMPORT TO TURKEY)</h5>
+
+
+<div class="shadow p-3 mb-5 mt-1 bg-body rounded">
+       
+  <table class="table table-striped">
+      <th style="width:6%">STR Ref</th><th style="width:5%">TUR Ref</th><th style="width:7%">Date of Case</th>
+      {% for record in pending_records_filter %}     
+  <tr>
+      <td style="width:6%">{{ record.str_ref_db}}</td><td style="width:6%">{{ record.tur_ref_db}}</td><td style="width:5%">{{ record.date_added_db}}</td>
+
+
+  </tr>
+  {% endfor %}
+  </table>
+
+</div>
+
+<h5 style="color: orangered;">There are <b>{{number_of_pending_records_export}}</b> files/cases waiting for pick up and customs clearance. (EXPORT FROM TURKEY)</h5>
+<div class="shadow p-3 mb-5 mt-1 bg-body rounded">
+       
+  <table class="table table-striped">
+      <th style="width:6%">STR Ref</th><th style="width:5%">TUR Ref</th><th style="width:7%">Date of Case</th>
+      {% for record in pending_records_filter_export %}     
+  <tr>
+      <td style="width:6%">{{ record.str_ref_db}}</td><td style="width:6%">{{ record.tur_ref_db}}</td><td style="width:5%">{{ record.date_added_db}}</td>
+
+
+  </tr>
+  {% endfor %}
+  </table>
+
+</div>
+<br><br>
+
+<p>Below are the new messages that were delivered after you have logged out on : {% if last_logout_of_user %}{{ last_logout_of_user }}{% endif %}</p>
+
+<div class="shadow p-3 mb-5 mt-1 bg-body rounded">
+       
+  <table class="table table-striped">
+      <th style="width:20%">Message Text</th><th style="width:3%">Sender</th><th style="width:5%">Date of Message</th><th style="width:7%">Company Ref</th>
+      {% for message in conversation_test_filter %}     
+  <tr>
+      <td style="width:6%">{{ message.text_db}}</td><td style="width:6%">{{ message.sender_db}}</td><td style="width:5%">{{ message.date_of_sending_db}}</td><td style="width:5%">{{ message.str_ref_db}}</td>
+
+
+  </tr>
+  {% endfor %}
+  </table>
+
+  
+
+</div>
+  {% endif %}
+
+
+
+  <h5 style="color: orangered;">S4S cases with remaining days less than 120 for re-import to Country</h5>
+  <div class="shadow p-3 mb-5 mt-1 bg-body rounded">
+         
+    <table class="table table-striped">
+        <th style="width:6%">STR Ref</th><th style="width:5%">TUR Ref</th><th style="width:7%">Date of Case</th>
+        {% for warning in warning_s4s_records %}     
+    <tr>
+        <td style="width:6%">{{ warning.id}}</td><td style="width:6%">{{ warning.cm_rma_db}}</td><td style="width:5%">{{ warning.serial_no_db}}</td>
+  
+  
+    </tr>
+    {% endfor %}
+    </table>
+  
+  </div>
+  <br><br>
+
+
+
+
+
+
+
+
+
+  {% if current_user.role_db=="user3" %}
+
+<h5 style="color: orangered;">There are <b>{{number_of_pending_records}}</b> pending files/cases waiting for approval.(IMPORT TO TURKEY)</h5>
+
+
+<div class="shadow p-3 mb-5 mt-1 bg-body rounded">
+       
+  <table class="table table-striped">
+      <th style="width:6%">STR Ref</th><th style="width:5%">TUR Ref</th><th style="width:7%">Date of Case</th>
+      {% for record in pending_records_filter %}     
+  <tr>
+      <td style="width:6%">{{ record.str_ref_db}}</td><td style="width:6%">{{ record.tur_ref_db}}</td><td style="width:5%">{{ record.date_added_db}}</td>
+
+
+  </tr>
+  {% endfor %}
+  </table>
+
+</div>
+
+
+<br><br>
+
+<p>Below are the new messages that were delivered after you have logged out on : {% if last_logout_of_user %}{{ last_logout_of_user }}{% endif %}</p>
+
+<div class="shadow p-3 mb-5 mt-1 bg-body rounded">
+       
+  <table class="table table-striped">
+      <th style="width:20%">Message Text</th><th style="width:3%">Sender</th><th style="width:5%">Date of Message</th><th style="width:7%">Company Ref</th>
+      {% for message in conversation_test_filter %}     
+  <tr>
+      <td style="width:6%">{{ message.text_db}}</td><td style="width:6%">{{ message.sender_db}}</td><td style="width:5%">{{ message.date_of_sending_db}}</td><td style="width:5%">{{ message.str_ref_db}}</td>
+
+
+  </tr>
+  {% endfor %}
+  </table>
+
+  
+
+</div>
+  {% endif %}
+
+
+  {% if current_user.role_db=="user4" %}
+  
+  
+  <h5 style="color: orangered;">There are <b>{{number_of_pending_records_export}}</b> files/cases waiting for pick up and customs clearance. (EXPORT FROM TURKEY)</h5>
+  <div class="shadow p-3 mb-5 mt-1 bg-body rounded">
+         
+    <table class="table table-striped">
+        <th style="width:6%">STR Ref</th><th style="width:5%">TUR Ref</th><th style="width:7%">Date of Case</th>
+        {% for record in pending_records_filter_export %}     
+    <tr>
+        <td style="width:6%">{{ record.str_ref_db}}</td><td style="width:6%">{{ record.tur_ref_db}}</td><td style="width:5%">{{ record.date_added_db}}</td>
+  
+  
+    </tr>
+    {% endfor %}
+    </table>
+  
+  </div>
+  <br><br>
+  
+  <p>Below are the new messages that were delivered after you have logged out on : {% if last_logout_of_user %}{{ last_logout_of_user }}{% endif %}</p>
+  
+  <div class="shadow p-3 mb-5 mt-1 bg-body rounded">
+         
+    <table class="table table-striped">
+        <th style="width:20%">Message Text</th><th style="width:3%">Sender</th><th style="width:5%">Date of Message</th><th style="width:7%">Company Ref</th>
+        {% for message in conversation_test_filter %}     
+    <tr>
+        <td style="width:6%">{{ message.text_db}}</td><td style="width:6%">{{ message.sender_db}}</td><td style="width:5%">{{ message.date_of_sending_db}}</td><td style="width:5%">{{ message.str_ref_db}}</td>
+  
+  
+    </tr>
+    {% endfor %}
+    </table>
+  
+    
+  
+  </div>
+    {% endif %}
+
+
+{% endif %}
+
+
+
+{%endblock%} 

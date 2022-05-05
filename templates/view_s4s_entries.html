@@ -1,0 +1,122 @@
+<head>
+    <style>
+    
+    #myform {
+        width: 80%;
+    }
+    #mytable {
+        border-spacing: 0px;
+    }
+    </style>
+</head>
+{% extends "base.html"%}
+
+
+{%block content%}
+
+<br/><br/><br/>
+<p><h5> Company Approval Process / Tests -1 </h5></p>
+<p><h4> New Case Entry Screen </h4></p>
+
+
+{% for message in get_flashed_messages() %}
+<div class="alert alert-success" role="alert">{{message}}</div>
+{% endfor %}
+
+</br>
+{% if user_name %}
+  User Name: {{ user_name }} User Role: {{ user_role }}
+{% endif %}
+</br>
+
+
+{% if user_role=="user1" %}
+<div class="shadow p-3 mb-5 mt-1 bg-body rounded">
+       
+    <table class="table table-striped">
+        <th style="width:6%">Case ID</th>
+        <th style="width:5%">CM_RMA</th>
+        <th style="width:9%">Juniper Part No</th>
+        <th style="width:7%; color: orangered;">Serial No</th>
+        <th style="width:7%">Quantity</th>
+        <th style="width:7%">Country of Origin</th>
+        <th style="width:5%">RMA No</th>
+        <th style="width:5%">Details</th>
+        <th style="width:5%">For Deletion</th>
+        <th style="width:5%">Status</th>
+        <th style="width:5%">Days Remaining</th>
+        {% for case in all_s4s_cases %}     
+    <tr>
+        <td style="width:6%">{{ case.id }}</td>
+        <td style="width:6%">{{ case.cm_rma_db }}</td>
+        <td style="width:5%">{{ case.juniper_part_no_db }}</td>
+        <td style="width:5%">{{ case.serial_no_db }}</td>
+        <td style="width:5%">{{ case.quantity_db }}</td>
+        <td style="width:5%">{{ case.country_of_origin_db }}</td>
+        <td style="width:5%">{{ case.rma_no }}</td>
+        <td style="width:8%"> <a href="{{url_for('see_one_s4s',id=case.id)}}">See Details</a></td>
+        <td><a href="{{url_for('delete_one_s4s',id=case.id)}}">Delete S4S Case</a></td>
+        <td style="width:5%">{{ case.case_status_db }}</td>
+        {% if case.latest_reimport_date_db %}
+        <td style="width:5%">{{ (case.latest_reimport_date_db-now).days }}</td>
+        {% elif case.latest_reimport_date_db==None %}
+        <td style="width:5%">Not Available</td>
+        {% endif %}
+        
+
+        
+    </tr>
+    {% endfor %}
+    </table>
+
+{% endif %}    
+
+{% if user_role!="user1" %}
+<div class="shadow p-3 mb-5 mt-1 bg-body rounded">
+       
+    <table class="table table-striped">
+        <th style="width:6%">Case ID</th>
+        <th style="width:5%">CM_RMA</th>
+        <th style="width:9%">Juniper Part No</th>
+        <th style="width:7%; color: orangered">Serial No</th>
+        <th style="width:7%">Quantity</th>
+        <th style="width:7%">Country of Origin</th>
+        <th style="width:5%">RMA No</th>
+        <th style="width:5%">Details</th>
+        <th style="width:5%">Status</th>
+        <th style="width:5%">Days Remaining</th>
+        
+        {% for case in all_s4s_cases %}     
+    <tr>
+        <td style="width:6%">{{ case.id }}</td>
+        <td style="width:6%">{{ case.cm_rma_db }}</td>
+        <td style="width:5%">{{ case.juniper_part_no_db }}</td>
+        <td style="width:5%">{{ case.serial_no_db }}</td>
+        <td style="width:5%">{{ case.quantity_db }}</td>
+        <td style="width:5%">{{ case.country_of_origin_db }}</td>
+        <td style="width:5%">{{ case.rma_no }}</td>
+        <td style="width:8%"> <a href="{{url_for('see_one_s4s',id=case.id)}}">See Details</a></td>
+        <td style="width:5%">{{ case.case_status_db }}</td>
+        {% if case.latest_reimport_date_db %}
+        <td style="width:5%">{{ (case.latest_reimport_date_db-now).days }}</td>
+        {% elif case.latest_reimport_date_db==None %}
+        <td style="width:5%">Not Available</td>
+        {% endif %}
+       
+
+        
+    </tr>
+    {% endfor %}
+    </table>
+
+{% endif %}
+
+
+
+
+
+</div>
+<br/><br/>
+<p><b>Company Global</b> / Version - 001 </p>
+
+{%endblock%}

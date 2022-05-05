@@ -1,0 +1,45 @@
+<head>
+    <style>
+    
+    #myform {
+        width: 80%;
+    }
+    #mytable {
+        border-spacing: 0px;
+    }
+    </style>
+</head>
+{% extends "base.html"%}
+
+
+{%block content%}
+
+<br/><br/><br/>
+<p><h5> Company Approval Process / Tests -1 </h5></p>
+<p><h4> New Case Entry Screen </h4></p>
+
+
+{% for message in get_flashed_messages() %}
+<div class="alert alert-success" role="alert">{{message}}</div>
+{% endfor %}
+
+</br>
+{% if user_name %}
+  User Name: {{ user_name }} User Role: {{ user_role }}
+{% endif %}
+</br>
+
+
+
+{% for file_name in list_of_file_names  %}
+    {{ file_name }}</br>
+{% endfor %}
+
+
+
+
+
+<br/><br/>
+<p><b>Company Global</b> / Version - 001 </p>
+
+{%endblock%}

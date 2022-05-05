@@ -1,0 +1,243 @@
+<head>
+    <style>
+    
+    #myform {
+        width: 80%;
+    }
+    #mytable {
+        border-spacing: 0px;
+    }
+    </style>
+</head>
+{% extends "base.html"%}
+
+
+{%block content%}
+
+<br/><br/><br/>
+<p><h5> Company Approval Process / Tests -1 </h5></p>
+<p><h4> S4S / Case Details </h4></p>
+
+
+</br>
+
+<a href="{{url_for('update_one_s4s',id=id)}}" button type="button" class="btn btn-info">Update S4S Information</a><br><br>
+
+<hr> <span style="color: orangered; font-size: 20px;">INFORMATION ABOUT EXPORT</span>
+
+<! Here user1 see all details below user3 and user4 will see their own separate information ––>
+
+
+
+
+    <table class="table table-striped">
+    <th style="width:5%">ID</th>
+    <th style="width:5%">CMA RMA NO</th>
+    <th style="width:5%">JUNIPER PART NO</th>
+    <th style="width:5%">SERIAL NO</th>
+    <th style="width:5%">QUANTITY</th>
+    <th style="width:5%">COUNTRY OF ORIGIN</th>
+    <th style="width:5%">RMA NO</th>
+
+    <tr>
+        <td>{{ s4s_to_show.id}}</td>
+        <td>{{ s4s_to_show.cm_rma_db }}</td>
+        <td>{{ s4s_to_show.juniper_part_no_db}}</td>
+        <td>{{ s4s_to_show.serial_no_db}}</td>
+        <td>{{ s4s_to_show.quantity_db}}</td>
+        <td>{{ s4s_to_show.country_of_origin_db}}</td>
+        <td>{{ s4s_to_show.rma_no}}</td>
+    </tr>
+    </table>
+
+    </br>                
+
+
+    <table class="table table-striped">
+        <th style="width:5%">STO NO</th>
+        <th style="width:5%">UPS SO NO</th>
+        <th style="width:5%">EXPORT INVOICE NO</th>
+        <th style="width:5%">EXPORT PRICE</th>
+        <th style="width:5%">EXPORT HAWB NO</th>
+        <th style="width:5%">EXPORT COB DATE</th>
+        <th style="width:5%">REPAIR CM CONSIGNEE NAME</th>
+    
+        <tr>
+            <td>{{ s4s_to_show.sto_no_db }}</td>
+            <td>{{ s4s_to_show.ups_so_db }}</td>
+            <td>{{ s4s_to_show.export_invoice_no_db}}</td>
+            <td>{{ s4s_to_show.export_price_db}}</td>
+            <td>{{ s4s_to_show.export_hawb_no_db}}</td>
+            <td>{{ s4s_to_show.export_cob_date_db}}</td>
+            <td>{{ s4s_to_show.repair_cm_consignee_db}}</td>
+        </tr>
+        </table>
+    
+    
+        </br>
+
+    <table class="table table-striped">
+       
+        <th style="width:80%">EXPORT REMARKS</th>
+        <th style="width:20%">EXPORT COUNTRY</th>
+        <tr>
+            <td>{{ s4s_to_show.export_remarks_db }}</td>
+            <td>{{ s4s_to_show.export_country_db}}</td>
+        </tr>
+    </table>
+    
+</br>
+    <hr> <span style="color: orangered; font-size: 20px;">INFORMATION ABOUT RE-IMPORT</span>
+    <table class="table table-striped">
+        
+        
+        <th style="width:5%">CM REFERENCE</th>
+        <th style="width:5%">REIMPORT INVOICE NO</th>
+        <th style="width:5%">REIMPORT REPAIR PRICE</th>
+        <th style="width:5%">TOTAL SHIPMENT VALUE</th>
+        <th style="width:5%">TOTAL CUSTOMS CIF VALUE</th>
+    
+        <tr>
+            
+            
+            <td>{{ s4s_to_show.cm_reference_db}}</td>
+            <td>{{ s4s_to_show.reimport_invoice_no_db}}</td>
+            <td>{{ s4s_to_show.reimport_repair_price_db}}</td>
+            <td>{{ s4s_to_show.total_shipment_value_db}}</td>
+            <td>{{ s4s_to_show.total_customs_cif_value_usd_db}}</td>
+        </tr>
+    </table>
+
+<br>
+    <table class="table table-striped">
+        <th style="width:5%">TOTAL CUSTOMS CIF VALUE (IDR)</th>
+        <th style="width:5%">TOTAL SHIPMENT CUSTOMS DUTY (IDR)</th>
+        <th style="width:5%">TOTAL SHIPMENT CUSTOMS VAT (IDR)</th>
+        <th style="width:5%">RE-IMPORT HAWB NO</th>
+        <th style="width:5%">RE-IMPORT DATE</th>
+        <th style="width:5%">REIMPORT CONSIGNEE</th>
+        <th style="width:5%">IMPORT COUNTRY</th>
+    
+        <tr>
+            <td>{{ s4s_to_show.total_customs_cif_value_idr_db}}</td>
+            <td>{{ s4s_to_show.total_shipment_customs_duty_idr_db}}</td>
+            <td>{{ s4s_to_show.total_shipment_customs_vat_idr_db}}</td>
+            <td>{{ s4s_to_show.import_hawb_no_db}}</td>
+            <td>{{ s4s_to_show.reimport_date_db}}</td>
+            <td>{{ s4s_to_show.reimport_consignee_db}}</td>
+            <td>{{ s4s_to_show.import_country_db}}</td>
+        </tr>
+    </table>
+    
+    </br>
+
+    <table class="table table-striped">
+        <th style="width:5%">IMPORT REMARKS</th>
+        <tr>
+            <td>{{ s4s_to_show.import_remarks_db}}</td>
+        </tr>
+    </table>
+    
+    </br>
+
+    <table class="table table-striped">
+        <th style="width:5%">NEW BUY PRICE</th>
+        <th style="width:5%">HS CODE</th>
+        <th style="width:5%">DUTY RATE ON NEW BUY</th>
+        <th style="width:5%">ESTIMATED DUTY CHARGE ON NEW BUY</th>
+        <th style="width:5%">ESTIMATED VAT CHARGE ON NEW BUY</th>
+        <th style="width:5%">S4S CASE STATUS</th>
+        <th style="width:5%">S4S CASE ACTIVE?</th>
+        <th style="width:5%">LATEST REIMPORT DATE</th>
+    
+        <tr>
+            <td>{{ s4s_to_show.new_buy_price_db }}</td>
+            <td>{{ s4s_to_show.hs_code_db}}</td>
+            <td>{{ s4s_to_show.duty_rate_on_new_buy_db}}</td>
+            <td>{{ s4s_to_show.estimated_duty_charge_on_new_buy_db}}</td>
+            <td>{{ s4s_to_show.estimated_vat_charge_on_new_buy_db}}</td>
+            <td>{{ s4s_to_show.case_status_db}}</td>
+            <td>{{ s4s_to_show.cancellation_status_db}}</td>
+            <td>{{ s4s_to_show.latest_reimport_date_db}}</td>
+        </tr>
+    </table>
+
+
+
+</br></br></br></br>
+<b>List of attachments:</b></br>
+
+{% for item in list_of_file_names %}
+
+     {{item}} </br>
+
+{% endfor %}
+<br><br>
+
+
+
+
+<br><br>
+{# See main app for explanation#}
+<b>For downloading attachments:</b></br>
+
+
+
+
+
+
+
+    {% for value1, value2 in list_of_file_name_numbers|zip(list_of_file_names) %}
+
+    <a href="{{url_for('download_attachment_s4s',id=s4s_to_show.id, file_no=value1)}}" button type="button" class="btn btn-warning">{{value2}}</a>
+
+    {% endfor %}
+
+
+</br></br>
+
+{% for message in get_flashed_messages() %}
+<div class="alert alert-success" role="alert">{{message}}</div>
+{% endfor %}
+
+
+
+</br></br>
+
+<p> Communication about this S4S case: <br><b>Last Message Displayed First </b> </p>
+<div class="shadow p-3 mb-5 mt-1 bg-body rounded">
+       
+    <table class="table table-striped">
+        <th style="width:5%">Message</th><th style="width:4%">Sender</th><th style="width:7%">Date</th>
+        {% for conversation in conversations_to_display %}
+    <tr>
+        <td style="width:30%">{{conversation.text_db}}</td><td style="width:5%">{{conversation.sender_db}}</td><td style="width:10%">{{conversation.date_of_sending_db}}</td>
+
+       
+    </tr>
+    {% endfor %}
+    </table>
+
+</div>
+
+<form method="POST", id="myform2">
+    {{form.hidden_tag()}}
+    
+    <table style="width:100%", id="mytable2">
+    
+    <tr><td>{{form.text.label(class="form-label")}} </td> </tr>
+    <tr><td>{{form.text(class="form-control")}} </td> </tr>
+</table>
+<br/>
+{{form.submit(class="btn btn-outline-primary")}}
+</form>
+
+
+
+</br></br>
+
+
+<br/><br/></br></br>
+<p><b>Company Global</b> / Version - 001 </p>
+
+{%endblock%}

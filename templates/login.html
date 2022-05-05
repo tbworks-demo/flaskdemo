@@ -1,0 +1,46 @@
+<style>
+    .error {
+    color: red;
+    border: 2px solid red;
+}
+    .success {
+    color: limegreen;
+    border: 2px solid limegreen;
+}
+
+</style>
+
+
+{% extends "base.html"%}
+
+
+{%block content%}
+<h6>LOGIN TESTS</h6>
+</br></br></br></br>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% for category, message in messages %}
+<div class="{{ category }}">{{ message }}</div>
+{% endfor %}
+{% endwith %}
+
+
+
+<b> <h3>Please log in with your username and password : </h3> </b>
+<br/>
+<form method="POST">
+    {{form.hidden_tag()}}
+    {{form.name.label(class="form-label")}}<br/>
+    {{form.name(class="form-control")}}<br/>
+    {{form.password.label(class="form-label")}}<br/>
+    {{form.password(class="form-control")}}<br/>
+    {{form.submit(class="btn btn-outline-primary")}}
+</form>
+
+
+<br/><br/>
+
+
+
+
+{%endblock%}

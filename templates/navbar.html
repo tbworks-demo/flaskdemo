@@ -1,0 +1,100 @@
+
+<style>
+    .navbar {
+      overflow: hidden;
+      background-color: #333;
+      position: fixed; /* Set the navbar to fixed position */
+      top: 0; /* Position the navbar at the top of the page */
+      width: 100%; /* Full width */
+      z-index:2;
+    }
+    
+    .button {
+
+      height: 30px;
+      width: 140px;    
+      border-radius: 10px;
+      border-width: 1px;
+      border-color: orange;
+      background-color: white;
+      color: black;
+      font-family: Arial, Helvetica, sans-serif;
+      text-align: center;
+    }
+    
+    .button:hover{
+    color: orangered;
+    border-color: orangered;
+
+    }
+    
+    </style>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{ url_for('index') }}" font><p class="text-danger" p style="font-size:15px;"><b>COMPANY</b> GLOBAL</p></a>  
+    
+        {% if current_user.is_authenticated %}
+        <p style="color:green;"><b>Logged In To </br> COMPANY System</b>
+          
+        {% else %}
+          <p style="color:red;"><b>You Are Not In System</b></p>
+        
+    
+        {% endif %}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+    
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        
+        <table>
+            <tr>
+                <td><li class="nav-item"><a class="nav-link" href=" {{ url_for('index') }} "><button class="button" style="width:180px;" >Main Page</button></a></li></td>
+                <td><li class="nav-item"><a class="nav-link" href="{{ url_for('new_import_entry') }}"><button class="button" style="width:180px;background-color: limegreen;">New Import Entry</button></a></li></td>
+                <td><li class="nav-item"><a class="nav-link" href="{{ url_for('new_export_entry') }}"><button class="button" style="width:180px;background-color: limegreen;">New Export Entry</button></a></li></td>
+                <td><li class="nav-item"><a class="nav-link" href="{{ url_for('new_s4s_entry') }}"><button class="button" style="width:180px;background-color: limegreen;">New S4S Entry</button></a></li></td>
+            </tr>
+        
+            <tr>
+              <td></td><td></td>
+              <td><li class="nav-item"><a class="nav-link" href="{{ url_for('see_all_records') }}"><button class="button" style="width:180px;background-color: orange;">View IMP/EXP Entries</button></a></li></td>
+              <td><li class="nav-item"><a class="nav-link" href="{{ url_for('view_s4s_entries') }}"><button class="button" style="width:180px;background-color: orange;">View S4S Entries</button></a></li></td>
+            </tr>  
+      
+        </table>
+        
+        {% if current_user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('logout') }}"><button class="button" style="background-color: orangered; color: white;">Log Out</button> </a>
+        </li>
+        
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('login') }}"><button class="button" style="background-color: green; color: white;">Log In</button></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('logout') }}"><button class="button" style="background-color: orangered; color: white;">Log Out</button> </a>
+        </li>
+        {% endif %}&nbsp&nbsp
+        
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <li class="nav-item">       
+        
+        {% if current_user.is_authenticated %}
+          <b>User Name :</b> {{current_user.name_db}}</br>
+          <b>User Role :</b> {{current_user.role_db}}
+        {% endif %}
+                
+        </li>
+          
+      </ul>
+      
+    </div>
+  </div>
+</nav>

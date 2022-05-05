@@ -1,0 +1,100 @@
+<head>
+    <style>
+    
+    #myform {
+        width: 80%;
+    }
+    #mytable {
+        border-spacing: 0px;
+    }
+    </style>
+</head>
+{% extends "base.html"%}
+
+
+{%block content%}
+
+<br/><br/><br/>
+<p><h5> Company Approval Process / Tests -1 </h5></p>
+<p><h4> New Case Entry Screen </h4></p>
+
+
+{% for message in get_flashed_messages() %}
+<div class="alert alert-success" role="alert">{{message}}</div>
+{% endfor %}
+
+</br>
+{% if user_name %}
+  User Name: {{ user_name }} User Role: {{ user_role }}
+{% endif %}
+</br>
+
+
+
+    <br/>
+    <form method="POST", id="myform" enctype="multipart/form-data">
+        {{form.hidden_tag()}}
+        
+        <table style="width:100%", id="mytable">
+        
+        <tr><td>{{form.str_ref.label(class="form-label")}} </td> </tr>
+        <tr><td>{{form.str_ref(class="form-control")}} </td> </tr>
+        
+        <tr><td>{{form.tur_ref.label(class="form-label")}} </td> </tr>
+        <tr><td>{{form.tur_ref(class="form-control")}} </td> </tr>
+        
+        <tr><td>{{form.note.label(class="form-label")}} </td> </tr>
+        <tr><td>{{form.note(class="form-control")}} </td></tr>
+
+        <tr><td>{{form.enduser_name.label(class="form-label")}} </td> </tr>
+        <tr><td>{{form.enduser_name(class="form-control")}} </td> </tr>
+        
+        <tr><td>{{form.enduser_company.label(class="form-label")}} </td> </tr>
+        <tr><td>{{form.enduser_company(class="form-control")}} </td> </tr>
+
+        <tr><td>{{form.enduser_address.label(class="form-label")}} </td> </tr>
+        <tr><td>{{form.enduser_address(class="form-control")}} </td> </tr>
+        
+        <tr><td>{{form.enduser_telephone.label(class="form-label")}} </td> </tr>
+        <tr><td>{{form.enduser_telephone(class="form-control")}} </td> </tr>
+
+        <tr><td>{{form.enduser_email.label(class="form-label")}} </td> </tr>
+        <tr><td>{{form.enduser_email(class="form-control")}} </td> </tr>
+        
+        <tr><td>{{form.cancellation_status.label(class="form-label")}} </td> </tr>
+        <tr><td>{{form.cancellation_status(class="form-control")}} </td> </tr>
+        
+        <tr>
+            <td>
+        <label for="inputFile">File input - 1</label></br>
+        <input class="form-control-file" type="file" name="inputFile1" enctype="multipart/form-data"></br>
+        <label for="inputFile">File input - 2</label></br>
+        <input class="form-control-file" type="file" name="inputFile2" enctype="multipart/form-data"></br>
+        <label for="inputFile">File input - 3</label></br>
+        <input class="form-control-file" type="file" name="inputFile3" enctype="multipart/form-data"></br>
+        <label for="inputFile">File input - 4</label></br>
+        <input class="form-control-file" type="file" name="inputFile4" enctype="multipart/form-data"></br>
+        <label for="inputFile">File input - 5</label></br>
+        <input class="form-control-file" type="file" name="inputFile5" enctype="multipart/form-data"></br>
+        <label for="inputFile">File input - 6</label></br>
+        <input class="form-control-file" type="file" name="inputFile6" enctype="multipart/form-data"></br>
+            </td>
+        </tr>
+
+        
+        
+        
+        </table>
+        <br/>
+        {{form.submit(class="btn btn-outline-primary")}}
+    </form>
+
+
+
+
+
+
+<br/><br/>
+<p><b>Company Global</b> / Version - 001 </p>
+
+{%endblock%}
